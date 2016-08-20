@@ -14,7 +14,7 @@ const FILE_NAME = 'data.json';
 
 const INITIAL_STATE = {
   version: 1,
-  chapterIndex: 0,
+  currentIndex: 0,
   checks: {},
   links: [
     {
@@ -154,21 +154,21 @@ const runApplication = (fileId, errCallback) => {
       let newState = state;
       switch(action.type) {
         case 'PREV': {
-          const chapterIndex = Bible.getPreviousChapterIndex(state.chapterIndex);
-          newState = Object.assign({}, state, { chapterIndex });
+          const currentIndex = Bible.getPreviousIndex(state.currentIndex);
+          newState = Object.assign({}, state, { currentIndex });
           break;
         }
         case 'NEXT': {
-          const chapterIndex = Bible.getNextChapterIndex(state.chapterIndex);
-          newState = Object.assign({}, state, { chapterIndex });
+          const currentIndex = Bible.getNextIndex(state.currentIndex);
+          newState = Object.assign({}, state, { currentIndex });
           break;
         }
         case 'CHECK': {
           let checks = Object.assign({}, state.checks);
           if (action.checked) {
-              checks[state.chapterIndex] = moment();
+              checks[state.currentIndex] = moment();
           } else {
-              delete checks[state.chapterIndex];
+              delete checks[state.currentIndex];
           }
           newState = Object.assign({}, state, { checks });
           break;

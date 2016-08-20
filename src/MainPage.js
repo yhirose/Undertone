@@ -17,11 +17,11 @@ class MainPage extends Component {
   }
 
   render(){
-    const { chapterIndex, links, checks } = this.props.state;
+    const { currentIndex, links, checks } = this.props.state;
 
-    const checked = checks[chapterIndex] !== undefined;
-    const citationText = Bible.getCitationTex(chapterIndex);
-    const { bookNo, chapterNo } = Bible.getBookNoAndChapterNo(chapterIndex);
+    const checked = checks[currentIndex] !== undefined;
+    const citationText = Bible.getCitationText(currentIndex);
+    const { bookNo, chapterNo } = Bible.getBookNoAndChapterNo(currentIndex);
 
     return (
       <div className="swiper-slide">

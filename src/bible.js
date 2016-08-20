@@ -68,7 +68,19 @@ const db = [
   { name: 'Re', count: 22 },
 ];
 
-const getCitationTex = (index) => {
+const getBookCount = () => {
+  return db.length;
+};
+
+const getBookName = (bookNo) => {
+  return db[bookNo - 1].name;
+};
+
+const getChapterCount = (bookNo) => {
+  return db[bookNo - 1].count;
+};
+
+const getCitationText = (index) => {
   let bookIndex = 0;
   let chapterIndex = 0;
   for (const o of db) {
@@ -100,14 +112,14 @@ const getTotalChapterCount = () => {
   return db.reduce((r, o) => { return r + o.count; }, 0);
 };
 
-const getPreviousChapterIndex = (chapterIndex) => {
+const getPreviousIndex = (chapterIndex) => {
   if (chapterIndex > 0) {
     return chapterIndex - 1;
   }
   return getTotalChapterCount() - 1;
 };
 
-const getNextChapterIndex = (chapterIndex) => {
+const getNextIndex = (chapterIndex) => {
   if (chapterIndex + 1 < getTotalChapterCount()) {
     return chapterIndex + 1;
   }
@@ -115,9 +127,12 @@ const getNextChapterIndex = (chapterIndex) => {
 };
 
 export default {
-  getCitationTex,
+  getBookCount,
+  getBookName,
+  getChapterCount,
+  getCitationText,
   getBookNoAndChapterNo,
   getTotalChapterCount,
-  getPreviousChapterIndex,
-  getNextChapterIndex,
+  getPreviousIndex,
+  getNextIndex,
 }

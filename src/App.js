@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import MainPage from './MainPage';
+import TablePage from './TablePage';
 import './App.css';
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
       <div className="App">
         <div className="swiper-container">
           <div className="swiper-wrapper">
-            <MainPage />,
+            <MainPage />
+            <TablePage />
           </div>
           <div className="swiper-pagination"></div>
         </div>
