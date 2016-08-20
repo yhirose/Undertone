@@ -1,0 +1,70 @@
+/* Placement */
+.center {
+  position: absolute;
+  margin: 0;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.side {
+  position: absolute;
+  margin: 0;
+  white-space: nowrap;
+  transform: translate(0, -50%);
+}
+
+/* Checkbox */
+.checkbox {
+  display: none;
+}
+
+.checkbox-label {
+  position: relative;
+  cursor: pointer;
+  color: gray;
+  font-size: 48pt;
+  padding: 1em;
+}
+
+.checkbox:checked + .checkbox-label:after {
+  position: absolute;
+  font-size: 70%;
+  content: "\2713";
+  color: green;
+  margin-left: .25em;
+}
+
+/* Citation */
+#citation {
+  top: 25%;
+  left: 50%;
+}
+
+/* Move Buttons */
+.move {
+  font-size: 40pt;
+}
+
+#prev {
+  top: 50%;
+  left: .5em;
+}
+
+#next {
+  top: 50%;
+  right: .5em;
+}
+
+/* Menu */
+#links {
+  top: 75%;
+  left: 50%;
+  color: gray;
+  padding: 0;
+}
+
+#links li {
+  font-size: 20pt;
+  text-align: center;
+  margin-bottom: .5em;
+}
