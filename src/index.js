@@ -65,7 +65,7 @@ const loadGoogleAPIClient = (callback) => {
   });
 };
 
-const updateFile = (fileId, fileMetadata, content, callback, errCallback) => {
+const createFile = (fileMetadata, content, callback, errCallback) => {
   const boundary = '-------314159265358979323846';
   const delimiter = "\r\n--" + boundary + "\r\n";
   const close_delim = "\r\n--" + boundary + "--";
@@ -79,8 +79,11 @@ const updateFile = (fileId, fileMetadata, content, callback, errCallback) => {
     close_delim;
 
   const arg = {
-    path: '/upload/drive/v3/files/' + encodeURIComponent(fileId) + '?uploadType=multipart',
-    method: 'PATCH',
+    path: '/upload/drive/v3/files',
+    method: 'POST',
+    params: {
+      uploadType: 'multipart'
+    },
     headers: {
       'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
     },
@@ -96,47 +99,57 @@ const updateFile = (fileId, fileMetadata, content, callback, errCallback) => {
     errCallback);
 };
 
-const createFile = (name, callback, errCallback) => {
-  gapi.client.drive.files.create({
-    resource: {
-      name,
-      parents: ['appDataFolder'],
-      mimeType: 'application/json'
+const updateFile = (fileId, fileMetadata, content, callback, errCallback) => {
+  const arg = {
+    path: '/upload/drive/v3/files/' + fileId,
+    method: 'PATCH',
+    params: {
+      uploadType: 'media'
     },
-    useContentAsIndexableText: true
-  }).then((resp) => {
-    callback(resp.result.id);
-  }, errCallback);
+    body: JSON.stringify(content)
+  };
+
+  gapi.client.request(arg).then(
+    (resp) => {
+      if (callback) {
+        callback(resp.result.id);
+      }
+    },
+    errCallback);
 };
 
-const loadFile = (fileId) => {
+const loadFile = (fileId, callback, errCallback) => {
   return gapi.client.drive.files.get({
     fileId,
     alt: 'media'
-  });
+  }).then((resp) => {
+    callback(JSON.parse(resp.body));
+  }, errCallback);
 };
 
-const loadDataFile = (name, callback, errCallback) => {
-  gapi.client.drive.files.list({
-    spaces: 'appDataFolder',
-    q: `name='${name}'`,
-    fields: 'files(id, name)'
-  }).then((resp) => {
-    const files = resp.result.files;
-    if (files && files.length > 0) {
-      callback(files[0].id);
-    } else {
-      createFile(name, (fileId) => {
-        updateFile(fileId, {}, INITIAL_STATE, callback, errCallback);
-      }, errCallback);
-    }
-  });
+const getDataFileId = (name, callback, errCallback) => {
+  gapi.client.load('drive', 'v3').then(() => {
+    gapi.client.drive.files.list({
+      spaces: 'appDataFolder',
+      q: `name='${name}'`,
+      fields: 'files(id, name)'
+    }).then((resp) => {
+      const files = resp.result.files;
+      if (files && files.length > 0) {
+        callback(files[0].id);
+      } else {
+        createFile({
+            name,
+            parents: ['appDataFolder'],
+            mimeType: 'application/json'
+        }, INITIAL_STATE, callback, errCallback);
+      }
+    });
+  }, errCallback);
 };
 
 const runApplication = (fileId, errCallback) => {
-  loadFile(fileId).then((resp) => {
-    const initialState = JSON.parse(resp.body);
-
+  loadFile(fileId, (initialState) => {
     const reducer = (state = initialState, action) => {
       let newState = state;
       switch(action.type) {
@@ -185,9 +198,7 @@ loadGoogleAPIClient(() => {
   const errorLog = (reason) => {
     console.log('Error: ' + reason.result.error.message);
   };
-  gapi.client.load('drive', 'v3').then(() => {
-    loadDataFile(FILE_NAME, (fileId) => {
-      runApplication(fileId, errorLog);
-    }, errorLog);
-  });
+  getDataFileId(FILE_NAME, (fileId) => {
+    runApplication(fileId, errorLog);
+  }, errorLog);
 });
