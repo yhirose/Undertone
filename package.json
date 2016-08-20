@@ -12,6 +12,7 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2"
   },
+  "homepage": "https://yhirose.github.io/Undertone",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
