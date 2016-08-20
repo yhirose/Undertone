@@ -29,11 +29,14 @@ const INITIAL_STATE = {
 };
 
 const loadGoogleAPIClient = (callback) => {
+  const signinButton = document.getElementById('signin');
   let auth2;
 
   const updateSigninStatus = (isSignedIn) => {
     if (isSignedIn) {
       callback();
+    } else {
+      signinButton.style.display = 'block';
     }
   }
 
@@ -57,7 +60,7 @@ const loadGoogleAPIClient = (callback) => {
   script.src = "https://apis.google.com/js/client.js?onload=handleClientLoad";
   document.getElementsByTagName('head')[0].appendChild(script);
 
-  document.getElementById('signin').addEventListener("click", (event) => {
+  signinButton.addEventListener("click", (event) => {
     gapi.auth2.getAuthInstance().signIn();
   });
 };

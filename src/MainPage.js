@@ -29,8 +29,8 @@ class MainPage extends Component {
           <input id="check" type="checkbox" className="checkbox" checked={checked} onClick={this.onCheck}/>
           <label className="checkbox-label" htmlFor="check">{citationText}</label>
         </div>
-        <button id="prev" className="move side" onClick={this.props.onPrev}>&lang;</button>
-        <button id="next" className="move side" onClick={this.props.onNext}>&rang;</button>
+        <a id="prev" href="#" className="move side" onClick={this.props.onPrev}>&lang;</a>
+        <a id="next" href="#" className="move side" onClick={this.props.onNext}>&rang;</a>
         <ul id="links" className="center">
           { links.map((link, index) => {
             const url = link.url
