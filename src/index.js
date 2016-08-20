@@ -34,8 +34,6 @@ const loadGoogleAPIClient = (callback) => {
   const updateSigninStatus = (isSignedIn) => {
     if (isSignedIn) {
       callback();
-    } else {
-      auth2.signIn();
     }
   }
 
@@ -58,6 +56,10 @@ const loadGoogleAPIClient = (callback) => {
   const script = document.createElement('script');
   script.src = "https://apis.google.com/js/client.js?onload=handleClientLoad";
   document.getElementsByTagName('head')[0].appendChild(script);
+
+  document.getElementById('signin').addEventListener("click", (event) => {
+    gapi.auth2.getAuthInstance().signIn();
+  });
 };
 
 const updateFile = (fileId, fileMetadata, content, callback, errCallback) => {
