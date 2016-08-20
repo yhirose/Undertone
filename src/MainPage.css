@@ -23,7 +23,7 @@
   cursor: pointer;
   color: gray;
   font-size: 48pt;
-  padding: 1em;
+  padding: .25em;
 }
 
 .checkbox:checked + .checkbox-label:after {
