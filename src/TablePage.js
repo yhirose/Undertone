@@ -92,12 +92,6 @@ class TablePage extends Component {
 
     return (
       <div className="swiper-slide">
-        <div ref="toolbar" className="toolbar" onClick={this.closeToolbar}>
-          <span ref="toolbarButtons" className="toolbarButtons">
-            <a href="#" onClick={this.onToggleCheck}>&#x2713;</a>
-            <a href="#" onClick={this.onSetIndex}>&#x279F;</a>
-          </span>
-        </div>
         <div className="cellsSection">
             <ul className="cells">
             { this.iota(Bible.getBookCount()).map((bookIndex) => {
@@ -120,6 +114,12 @@ class TablePage extends Component {
               });
             }) }
             </ul>
+        </div>
+        <div ref="toolbar" className="toolbar" onClick={this.closeToolbar}>
+          <span ref="toolbarButtons" className="toolbarButtons">
+            <a href="#" onClick={this.onToggleCheck}>&#x2713;</a>
+            <a href="#" onClick={this.onSetIndex}>&#x279F;</a>
+          </span>
         </div>
       </div>
     );
