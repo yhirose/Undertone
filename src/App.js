@@ -18,8 +18,8 @@ class App extends Component {
       <div className="App">
         <div className="swiper-container">
           <div className="swiper-wrapper">
-            <MainPage />
             <TablePage />
+            <MainPage />
           </div>
           <div className="swiper-pagination"></div>
         </div>

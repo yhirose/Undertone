@@ -7,7 +7,10 @@ export function next() {
   return { type: 'NEXT' };
 }
 
-export function check(checked) {
-  return { type: 'CHECK', checked };
+export function toggleCheck(index) {
+  return { type: 'TOGGLE_CHECK', index };
 }
 
+export function setIndex(index) {
+  return { type: 'SET_INDEX', index };
+}

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import Bible from './bible';
 import { connect } from 'react-redux';
-import { prev, next, check } from './actions';
+import { prev, next, toggleCheck } from './actions';
 import './MainPage.css';
 
 class MainPage extends Component {
@@ -11,8 +11,7 @@ class MainPage extends Component {
     super(props);
 
     this.onCheck = () => {
-      const checked = document.getElementById('check').checked;
-      this.props.onCheck(checked);
+      this.props.onToggleCheck(this.props.state.currentIndex);
     };
   }
 
@@ -26,7 +25,8 @@ class MainPage extends Component {
     return (
       <div className="swiper-slide">
         <div id="citation" className="center">
-          <input id="check" type="checkbox" className="checkbox" checked={checked} onClick={this.onCheck}/>
+          <input id="check" type="checkbox" className="checkbox"
+            checked={checked} onClick={this.onCheck}/>
           <label className="checkbox-label" htmlFor="check">{citationText}</label>
         </div>
         <a id="prev" href="#" className="move side" onClick={this.props.onPrev}>&lang;</a>
@@ -55,7 +55,7 @@ const MainPageContainer = connect(
     return {
       onPrev() { dispatch(prev()); },
       onNext() { dispatch(next()); },
-      onCheck(checked) { dispatch(check(checked)); },
+      onToggleCheck(index) { dispatch(toggleCheck(index)); },
     };
   }
 )(MainPage);

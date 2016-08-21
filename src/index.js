@@ -153,6 +153,11 @@ const runApplication = (fileId, errCallback) => {
     const reducer = (state = initialState, action) => {
       let newState = state;
       switch(action.type) {
+        case 'SET_INDEX': {
+          const currentIndex = action.index;
+          newState = Object.assign({}, state, { currentIndex });
+          break;
+        }
         case 'PREV': {
           const currentIndex = Bible.getPreviousIndex(state.currentIndex);
           newState = Object.assign({}, state, { currentIndex });
@@ -163,12 +168,13 @@ const runApplication = (fileId, errCallback) => {
           newState = Object.assign({}, state, { currentIndex });
           break;
         }
-        case 'CHECK': {
+        case 'TOGGLE_CHECK': {
           let checks = Object.assign({}, state.checks);
-          if (action.checked) {
-              checks[state.currentIndex] = moment();
+          const checked = checks[action.index];
+          if (checked) {
+              delete checks[action.index];
           } else {
-              delete checks[state.currentIndex];
+              checks[action.index] = moment();
           }
           newState = Object.assign({}, state, { checks });
           break;
