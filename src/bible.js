@@ -17,7 +17,7 @@ const db = [
   { name: 'Ezr', count: 10 },
   { name: 'Ne', count: 13 },
   { name: 'Es', count: 10 },
-  { name: '', count: 42 },
+  { name: 'Job', count: 42 },
   { name: 'Ps', count: 150 },
   { name: 'Pr', count: 31 },
   { name: 'Ec', count: 12 },
