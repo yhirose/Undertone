@@ -59,9 +59,12 @@ const loadGoogleAPIClient = (callback) => {
   script.src = "https://apis.google.com/js/client.js?onload=handleClientLoad";
   document.getElementsByTagName('head')[0].appendChild(script);
 
-  signinButton.addEventListener("click", (event) => {
+  const signIn = () => {
     gapi.auth2.getAuthInstance().signIn();
-  });
+  };
+
+  signinButton.addEventListener("click", signIn);
+  signinButton.addEventListener("touchend", signIn);
 };
 
 const createFile = (fileMetadata, content, callback, errCallback) => {
