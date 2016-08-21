@@ -36,7 +36,7 @@
 
 /* Citation */
 #citation {
-  top: 25%;
+  top: 20%;
   left: 50%;
 }
 
@@ -46,18 +46,18 @@
 }
 
 #prev {
-  top: 50%;
+  top: 45%;
   left: .5em;
 }
 
 #next {
-  top: 50%;
+  top: 45%;
   right: .5em;
 }
 
 /* Menu */
 #links {
-  top: 75%;
+  top: 70%;
   left: 50%;
   color: gray;
   padding: 0;

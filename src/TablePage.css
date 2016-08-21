@@ -2,9 +2,8 @@
 /* Cell */
 .cellsSection {
   float: left;
-  padding: 1em;
+  padding: 1em 1em 2em 1em;
   background: white;
-  border: 1px solid lightgray;
   height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -16,9 +15,9 @@
   font-size: .7em;
   margin-top: 2px;
   margin-left: 2px;
-  height: 32px;
-  line-height: 32px;
-  width: 32px;
+  height: 44px;
+  line-height: 44px;
+  width: 44px;
   color: #4477a1;
   background: white;
   transition: background-color 1s;

@@ -30,7 +30,6 @@ const INITIAL_STATE = {
 
 const loadGoogleAPIClient = (callback) => {
   const signinButton = document.getElementById('signin');
-  let auth2;
 
   const updateSigninStatus = (isSignedIn) => {
     if (isSignedIn) {
@@ -42,11 +41,11 @@ const loadGoogleAPIClient = (callback) => {
 
   const initAuth = () => {
     gapi.client.setApiKey(API_KEY);
-    auth2 = gapi.auth2.init({
+    gapi.auth2.init({
       client_id: CLIENT_ID,
       scope: 'https://www.googleapis.com/auth/drive.appdata'
     }).then(() => {
-      auth2 = gapi.auth2.getAuthInstance();
+      const auth2 = gapi.auth2.getAuthInstance();
       auth2.isSignedIn.listen(updateSigninStatus);
       updateSigninStatus(auth2.isSignedIn.get());
     });
