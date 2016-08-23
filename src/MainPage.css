@@ -21,7 +21,7 @@
 .checkbox-label {
   position: relative;
   cursor: pointer;
-  color: gray;
+  color: #4477a1;
   font-size: 48pt;
   padding: .25em;
 }
@@ -32,6 +32,11 @@
   content: "\2713";
   color: green;
   margin-left: .25em;
+}
+
+/* Main Page */
+#mainPage a:active {
+  color: goldenrod;
 }
 
 /* Citation */
@@ -48,23 +53,29 @@
 #prev {
   top: 45%;
   left: .5em;
+  color: lightgray;
 }
 
 #next {
   top: 45%;
   right: .5em;
+  color: lightgray;
 }
 
 /* Menu */
 #links {
   top: 70%;
   left: 50%;
-  color: gray;
   padding: 0;
 }
 
-#links li {
-  font-size: 20pt;
+#links > li {
   text-align: center;
   margin-bottom: .5em;
+}
+
+#links > li > a {
+  font-size: 18pt;
+  font-style: italic;
+  color: gray;
 }

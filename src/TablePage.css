@@ -58,7 +58,19 @@
   width: 48px;
   line-height: 48px;
   text-align: center;
+  color: gray;
   background-color: white;
   font-size: 1.5em;
+  font-style: italic;
   margin-left: 1px;
+}
+
+.toolbarButtons > a:nth-child(1) {
+  font-style: normal;
+  color: green;
+}
+
+.toolbarButtons > a:nth-child(2) {
+  font-style: normal;
+  color: red;
 }

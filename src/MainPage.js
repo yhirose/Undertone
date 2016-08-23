@@ -24,22 +24,24 @@ class MainPage extends Component {
 
     return (
       <div className="swiper-slide">
-        <div id="citation" className="center">
-          <input id="check" type="checkbox" className="checkbox"
-            checked={checked} onClick={this.onCheck}/>
-          <label className="checkbox-label" htmlFor="check">{citationText}</label>
-        </div>
-        <a id="prev" href="#" className="move side" onClick={this.props.onPrev}>&lang;</a>
-        <a id="next" href="#" className="move side" onClick={this.props.onNext}>&rang;</a>
-        <ul id="links" className="center">
-          { links.map((link, index) => {
-            const url = link.url
-              .replace('{book}', bookNo)
-              .replace('{chapter}', chapterNo);
+        <div id="mainPage">
+          <div id="citation" className="center">
+            <input id="check" type="checkbox" className="checkbox"
+              checked={checked} onClick={this.onCheck}/>
+            <label className="checkbox-label" htmlFor="check">{citationText}</label>
+          </div>
+          <a id="prev" href="#" className="move side" onClick={this.props.onPrev}>&lang;</a>
+          <a id="next" href="#" className="move side" onClick={this.props.onNext}>&rang;</a>
+          <ul id="links" className="center">
+            { links.map((link, index) => {
+              const url = link.url
+                .replace('{book}', bookNo)
+                .replace('{chapter}', chapterNo);
 
-            return <li key={index}><a href={url}>{link.label}</a></li>
-          }) }
-        </ul>
+              return <li key={index}><a href={url}>{link.label}</a></li>
+            }) }
+          </ul>
+        </div>
       </div>
     );
   }

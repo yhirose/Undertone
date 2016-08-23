@@ -19,10 +19,12 @@ const INITIAL_STATE = {
   links: [
     {
       label: 'NWT English',
+      initial: 'E',
       url: 'http://m.wol.jw.org/en/wol/b/r1/lp-e/nwt/E/2013/{book}/{chapter}'
     },
     {
       label: 'Rbi8 Japanese',
+      initial: 'J',
       url: 'http://m.wol.jw.org/ja/wol/b/r7/lp-j/Rbi8/J/1985/{book}/{chapter}'
     }
   ]
@@ -125,7 +127,15 @@ const loadFile = (fileId, callback, errCallback) => {
     fileId,
     alt: 'media'
   }).then((resp) => {
-    callback(JSON.parse(resp.body));
+    let state = JSON.parse(resp.body);
+
+    // NOTE: Set initial letter when it is undefined...
+    for (let i = 0; i < state.links.length; i++) {
+      const link = state.links[i];
+      link.initial = link.initial || INITIAL_STATE.links[i].initial;
+    }
+
+    callback(state);
   }, errCallback);
 };
 

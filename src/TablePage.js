@@ -48,6 +48,8 @@ class TablePage extends Component {
 
     this.onClickChapter = (event, index, book, chapter) => {
       this.index = index;
+      this.book = book;
+      this.chapter = chapter;
 
       const toolbar = this.refs.toolbar;
       const toolbarButtons = this.refs.toolbarButtons;
@@ -58,11 +60,12 @@ class TablePage extends Component {
       toolbarButtons.style.top = y + 'px';
 
       let x = event.clientX;
-      if (x < 48) {
-        x = 64;
+      const margin = 48 * 2 + 16;
+      if (x < margin) {
+        x = margin;
       }
-      if (x > toolbar.clientWidth - 48) {
-        x = toolbar.clientWidth - 64;
+      if (x > toolbar.clientWidth - margin) {
+        x = toolbar.clientWidth - margin;
       }
       toolbarButtons.style.left = x + 'px';
 
@@ -82,12 +85,22 @@ class TablePage extends Component {
     };
   }
 
+  makeOnLink(index) {
+    return () => {
+      const link = this.props.state.links[index];
+      const url = link.url
+        .replace('{book}', this.book)
+        .replace('{chapter}', this.chapter);
+      window.location.href = url;
+    };
+  }
+
   iota(count) {
     return [...Array(count).keys()];
   }
 
   render(){
-    const { currentIndex, checks } = this.props.state;
+    const { currentIndex, links, checks } = this.props.state;
     let index = 0;
 
     return (
@@ -117,8 +130,12 @@ class TablePage extends Component {
         </div>
         <div ref="toolbar" className="toolbar" onClick={this.closeToolbar}>
           <span ref="toolbarButtons" className="toolbarButtons">
-            <a href="#" onClick={this.onToggleCheck}>&#x2713;</a>
-            <a href="#" onClick={this.onSetIndex}>&#x279F;</a>
+            <a key={0} href="#" onClick={this.onToggleCheck}>&#x2713;</a>
+            <a key={1} href="#" onClick={this.onSetIndex}>&#x279F;</a>
+            { links.map((link, index) => {
+              const key = index + 2;
+              return <a key={key} href="#" onClick={this.makeOnLink(index)}>{link.initial}</a>
+            }) }
           </span>
         </div>
       </div>
