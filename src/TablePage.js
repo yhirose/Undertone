@@ -87,7 +87,7 @@ class TablePage extends Component {
 
   makeOnLink(index) {
     return () => {
-      const link = this.props.state.links[index];
+      const link = this.props.links[index];
       const url = link.url
         .replace('{book}', this.book)
         .replace('{chapter}', this.chapter);
@@ -100,7 +100,7 @@ class TablePage extends Component {
   }
 
   render(){
-    const { currentIndex, links, checks } = this.props.state;
+    const { currentIndex, links, checks } = this.props;
     let index = 0;
 
     return (
@@ -145,9 +145,7 @@ class TablePage extends Component {
 
 const TablePageContainer = connect(
   (state) => {
-    return {
-      state
-    };
+    return state;
   },
   (dispatch) => {
     return {

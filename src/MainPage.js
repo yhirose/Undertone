@@ -11,12 +11,12 @@ class MainPage extends Component {
     super(props);
 
     this.onCheck = () => {
-      this.props.onToggleCheck(this.props.state.currentIndex);
+      this.props.onToggleCheck(this.props.currentIndex);
     };
   }
 
   render(){
-    const { currentIndex, links, checks } = this.props.state;
+    const { currentIndex, links, checks } = this.props;
 
     const checked = checks[currentIndex] !== undefined;
     const citationText = Bible.getCitationText(currentIndex);
@@ -49,9 +49,7 @@ class MainPage extends Component {
 
 const MainPageContainer = connect(
   (state) => {
-    return {
-      state
-    };
+    return state;
   },
   (dispatch) => {
     return {
