@@ -50,6 +50,7 @@
 .toolbarButtons {
   display: inline-block;
   position: relative;
+  background-color: lightgray;
 }
 
 .toolbarButtons > a {
@@ -65,12 +66,12 @@
   margin-left: 1px;
 }
 
-.toolbarButtons > a:nth-child(1) {
+.toolbarButtons > .check {
   font-style: normal;
   color: green;
 }
 
-.toolbarButtons > a:nth-child(2) {
+.toolbarButtons > .set {
   font-style: normal;
   color: red;
 }

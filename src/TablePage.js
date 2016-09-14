@@ -130,12 +130,12 @@ class TablePage extends Component {
         </div>
         <div ref="toolbar" className="toolbar" onClick={this.closeToolbar}>
           <span ref="toolbarButtons" className="toolbarButtons">
-            <a key={0} href="#" onClick={this.onToggleCheck}>&#x2713;</a>
-            <a key={1} href="#" onClick={this.onSetIndex}>&#x279F;</a>
             { links.map((link, index) => {
               const key = index + 2;
               return <a key={key} href="#" onClick={this.makeOnLink(index)}>{link.initial}</a>
             }) }
+            <a key={0} className="check" href="#" onClick={this.onToggleCheck}>&#x2713;</a>
+            <a key={1} className="set" href="#" onClick={this.onSetIndex}>&#x279F;</a>
           </span>
         </div>
       </div>
