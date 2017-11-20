@@ -6,13 +6,6 @@
   transform: translate(-50%, -50%);
 }
 
-.side {
-  position: absolute;
-  margin: 0;
-  white-space: nowrap;
-  transform: translate(0, -50%);
-}
-
 /* Checkbox */
 .checkbox {
   display: none;
@@ -50,15 +43,27 @@
   font-size: 40pt;
 }
 
+#moveBar {
+  position: absolute;
+  justify-content: space-around;
+  display: flex;
+  width: 100vw;
+  top: 40%;
+}
+
+#moveBarInner {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  min-width: 320px;
+}
+
 #prev {
-  top: 45%;
-  left: .5em;
   color: lightgray;
 }
 
 #next {
-  top: 45%;
-  right: .5em;
   color: lightgray;
 }
 

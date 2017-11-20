@@ -30,8 +30,12 @@ class MainPage extends Component {
               checked={checked} onClick={this.onCheck}/>
             <label className="checkbox-label" htmlFor="check">{citationText}</label>
           </div>
-          <a id="prev" href="#" className="move side" onClick={this.props.onPrev}>&lang;</a>
-          <a id="next" href="#" className="move side" onClick={this.props.onNext}>&rang;</a>
+          <div id="moveBar">
+            <div id="moveBarInner">
+            <a id="prev" href="#" className="move" onClick={this.props.onPrev}>&lang;</a>
+            <a id="next" href="#" className="move" onClick={this.props.onNext}>&rang;</a>
+            </div>
+          </div>
           <ul id="links" className="center">
             { links.map((link, index) => {
               const url = link.url
