@@ -18,14 +18,14 @@ const INITIAL_STATE = {
   checks: {},
   links: [
     {
-      label: 'NWT English',
+      label: 'English',
       initial: 'E',
       url: 'http://m.wol.jw.org/en/wol/b/r1/lp-e/nwt/E/2013/{book}/{chapter}'
     },
     {
-      label: 'Rbi8 Japanese',
+      label: 'Japanese',
       initial: 'J',
-      url: 'http://m.wol.jw.org/ja/wol/b/r7/lp-j/Rbi8/J/1985/{book}/{chapter}'
+      url: 'http://m.wol.jw.org/ja/wol/b/r7/lp-j/nwt/J/2019/{book}/{chapter}'
     }
   ]
 };
@@ -130,10 +130,11 @@ const loadFile = (fileId, callback, errCallback) => {
     let state = JSON.parse(resp.body);
 
     // NOTE: Set initial letter when it is undefined...
-    for (let i = 0; i < state.links.length; i++) {
-      const link = state.links[i];
-      link.initial = link.initial || INITIAL_STATE.links[i].initial;
-    }
+    // for (let i = 0; i < state.links.length; i++) {
+    //   const link = state.links[i];
+    //   link.initial = link.initial || INITIAL_STATE.links[i].initial;
+    // }
+    state.links = INITIAL_STATE.links;
 
     callback(state);
   }, errCallback);
@@ -197,7 +198,7 @@ const runApplication = (fileId, errCallback) => {
 
       updateFile(fileId, {}, newState, null, errCallback);
 
-      console.log(JSON.stringify(newState, null, 2));
+      // console.log(JSON.stringify(newState, null, 2));
       return newState;
     };
 
